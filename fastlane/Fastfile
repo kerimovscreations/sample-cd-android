@@ -41,12 +41,10 @@ platform :android do
     desc "My awesome app"
     lane :distribute do
     gradle(task: "clean assembleRelease")
-        build_android_app
-
         firebase_app_distribution(
-            app: "1:377228560014:android:aeffd68fe4047a12f3abdf",
-            testers: "rossokam@gmail.com",
-            release_notes: "Lots of amazing new features to test out!"
+            app: ENV['FIREBASE_APP_ID'],
+            groups_file: "FirebaseAppDistributionConfig/groups.txt",
+            release_notes_file: "FirebaseAppDistributionConfig/release_notes.txt"
         )
 
     end
